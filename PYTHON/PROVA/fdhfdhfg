@@ -1,0 +1,45 @@
+8 requisitos funcionais
+
+Entrada(Login).
+Saída(Logout).
+Cadastros de usuarios.
+Cadastros de Produtos.
+Barra de pesquisa de Produtos.
+Para cada peça deve haver um código específico para haver diferenciação e procura da peça(famoso código de barras).
+Cada usuário deve ter Email e senha em específicos e único para cadastro e também para login.
+Para o cadastro da peça deve haver: o codigo Específico,Fabricante, Preço e Quantidade.
+Modo offline para Visualização de peças.
+Redefinação de senha por duas etapas
+Atualização de cadastro para caso foir preciso atualizar por exemplo o email e trocar para um novo será possível
+Lista contendo o nome do Item, Quantidade, Fabricante
+
+Casos de teste
+
+A senha e o usuario devem ser compativeis se não forem irá constar um erro até que o usuário colocar senha/usuario(Email)
+Se caso o usúario não tiver acesso a senha por qualquer motivo que foi cadastrado ele poderá pedir redefinição de senha
+Se o usuário colocar o email igual a um email de outro usuário não sera possível concluir o cadastro
+Se caso o usuário tentar cadastrar o mesmo código duas vezes irá constar erro
+Se caso o usuário tentar cadastrar um código que ja esta´cadasrado irá constar erro
+
+
+Lista de possíveis informações que precisam ser armazenadas e o motivo
+
+
+
+ter panejamento
+tela de login
+tela de CRUD
+
+
+
+Cada dupla deverá entregar um arquivo compactado (.zip) contendo:
+1.	Documentação Técnica (PDF):
+○	Lista dos 8 Requisitos Funcionais;
+○	Lista dos 8 Casos de Teste;
+○	Lista de Possíveis informações que precisam ser armazenadas e o motivo.
+2.	Planejamento da Interface (Desktop e Celular):
+○	Tela de Login
+○	Tela de Cadastro de Produtos
+○	Tela de Visualização de Produtos Cadastrados
+3.	Regras de Negócio Funcionando
+○	Lista de evidencias que mostram que o sistema atende os requisitos listados
