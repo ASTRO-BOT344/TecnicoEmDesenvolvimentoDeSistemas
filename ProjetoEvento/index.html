@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of the Year - O Evento do Ano!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QR Code Generator Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Efeito de brilho sutil para botões e elementos importantes */
+        .glow-effect {
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.5);
+        }
+        /* Animação de fade-in para as páginas */
+        .page {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white selection:bg-blue-500 selection:text-white">
+
+    <div id="app" class="min-h-screen flex flex-col">
+
+        <!-- ===== SEÇÃO PRINCIPAL (HOME) ===== -->
+        <main id="home-page" class="flex-grow page">
+            <div class="container mx-auto px-4 py-12 text-center">
+                <header class="mb-12">
+                    <h1 class="text-5xl md:text-7xl font-black uppercase tracking-wider text-blue-400 drop-shadow-lg">Game of the Year</h1>
+                    <p class="text-xl text-gray-300 mt-4">A batalha final pelos melhores do ano começa aqui.</p>
+                </header>
+
+                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 border border-gray-700 shadow-2xl max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6 text-center">Mapa do Galpão</h2>
+                    <p class="text-gray-400 mb-8 text-center">Navegue pelo nosso espaço. Outros eventos podem estar acontecendo, mas a glória está aqui!</p>
+                    
+                    <!-- O Mapa -->
+                    <div class="grid grid-cols-3 grid-rows-3 gap-4 h-96 bg-gray-900/50 p-4 rounded-lg border-2 border-dashed border-gray-600">
+                        <!-- Linha 1 -->
+                        <div class="col-span-1 row-span-1 bg-red-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-red-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-red-400 mb-2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17-5-5 5-5"/><path d="M15 12H5"/></svg>
+                            <span class="font-semibold text-xs text-center">Saída de Emergência</span>
+                        </div>
+                        <div class="col-span-1 row-span-1 bg-yellow-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-yellow-400 mb-2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span class="font-semibold text-xs text-center">Banheiros</span>
+                        </div>
+                         <div class="col-span-1 row-span-1 bg-green-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-green-400 mb-2"><path d="M13 10V3.24a1 1 0 0 0-1.81-.59L6.53 9H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.7l6.93 6.93a1 1 0 0 0 1.81-.59V14"/><path d="M13 10h3m5 0h-3m0 0V7m0 3v3"/></svg>
+                            <span class="font-semibold text-xs text-center">Entrada do Evento</span>
+                        </div>
+
+                        <!-- Linha 2 -->
+                        <div id="goToOtherEventBtn" class="col-span-1 row-span-2 bg-purple-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-purple-500 cursor-pointer hover:bg-purple-500/50 transition-colors">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-purple-400 mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                            <span class="font-semibold text-xs text-center">CCXP 2424</span>
+                        </div>
+                        <div id="ourEventBtn" class="col-span-1 row-span-1 bg-blue-500/50 rounded-lg flex flex-col items-center justify-center p-2 border-4 border-blue-400 glow-effect cursor-pointer hover:bg-blue-500/70 transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-blue-300 mb-2"><path d="m6 9 6 6 6-6"/></svg>
+                            <span class="font-bold text-sm text-center">NOSSO EVENTO</span>
+                        </div>
+                        <div class="col-span-1 row-span-2 bg-purple-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-purple-500">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-purple-400 mb-2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                           <span class="font-semibold text-xs text-center">Outros Eventos</span>
+                        </div>
+
+                        <!-- Linha 3 -->
+                        <div id="goToFoodCourtBtn" class="col-span-1 row-span-1 bg-orange-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-orange-500 cursor-pointer hover:bg-orange-500/50 transition-colors">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-orange-400 mb-2"><path d="M12 2v2"/><path d="M12 20v2"/><path d="M5 12H3m18 0h-2"/><path d="M19.07 4.93l-1.42 1.42M6.34 17.66l-1.42 1.42"/><path d="m19.07 19.07-1.42-1.42M6.34 6.34 4.93 4.93"/><path d="M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4Z"/><path d="M12 12v8a4 4 0 0 0 4-4h-4Z"/></svg>
+                            <span class="font-semibold text-xs text-center">Área de Alimentação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <button id="goToRegisterBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-full text-xl uppercase tracking-wider glow-effect transition duration-300 transform hover:scale-105">
+                        Garanta seu Ingresso!
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- ===== SEÇÃO DETALHES DO EVENTO ===== -->
+        <section id="event-details-page" class="hidden flex-grow page flex items-center justify-center">
+            <div class="container mx-auto px-4 py-12 text-center max-w-4xl">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                    <h2 class="text-4xl font-bold mb-6">Mapa do Nosso Evento, palco e cadeiras</h2>
+                    <p class="text-gray-400 mb-8">Prepare-se para shows incríveis, painéis com desenvolvedores e a grande cerimônia de premiação!</p>
+                    <div class="w-full max-w-3xl aspect-video p-4 rounded-lg bg-gray-900/50 border-2 border-dashed border-gray-600 mx-auto mb-8 flex flex-col">
+                        <!-- Palco -->
+                        <div class="bg-blue-500/50 rounded-lg flex items-center justify-center p-4 py-6 border-2 border-blue-400 mb-6">
+                            <span class="font-bold text-2xl text-white tracking-widest uppercase">Palco</span>
+                        </div>
+                        
+                        <!-- Plateia / Cadeiras -->
+                        <div id="static-chair-container" class="flex-grow grid grid-cols-12 gap-2 p-2">
+                           <!-- Gerado por JS -->
+                        </div>
+                    </div>
+                    <button class="back-btn mt-4 text-blue-400 hover:text-blue-300">&larr; Voltar para o mapa</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO DE INSCRIÇÃO ===== -->
+        <section id="registration-page" class="hidden flex-grow page flex items-center justify-center">
+             <div class="container mx-auto px-4 py-12 text-center max-w-2xl">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                    <div id="form-container">
+                        <h2 class="text-4xl font-bold mb-6">Inscrição no GOTY</h2>
+                        <form id="registrationForm">
+                            <div class="mb-6">
+                                <label for="name" class="block text-left text-gray-300 text-sm font-bold mb-2">Nome Completo:</label>
+                                <input type="text" id="name" name="name" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Seu nome de jogador" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-left text-gray-300 text-sm font-bold mb-2">E-mail:</label>
+                                <input type="email" id="email" name="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="mb-8">
+                                <label class="block text-left text-gray-300 text-sm font-bold mb-2">Assento:</label>
+                                <div class="flex items-center justify-between bg-gray-700 border border-gray-600 rounded-lg py-3 px-4">
+                                    <span id="selected-seat-display" class="text-gray-400">Nenhum assento selecionado</span>
+                                    <button type="button" id="openSeatModalBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-md text-sm">Selecionar</button>
+                                </div>
+                                <input type="hidden" id="selected-seat-input" name="selected-seat">
+                            </div>
+
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg text-lg uppercase tracking-wider glow-effect transition duration-300">
+                                Gerar meu QR Code
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="qrcode-container" class="hidden text-center">
+                        <h2 class="text-3xl font-bold text-green-400 mb-4">Inscrição Confirmada!</h2>
+                        <p class="text-gray-300 mb-6">Apresente este QR Code na entrada do evento. Nos vemos lá!</p>
+                        <div id="qrcode" class="flex justify-center p-4 bg-white rounded-lg max-w-xs mx-auto"></div>
+                        <p id="userNameDisplay" class="mt-4 font-semibold text-lg"></p>
+                        <p id="userSeatDisplay" class="mt-2 text-gray-300"></p>
+                    </div>
+
+                    <button class="back-btn mt-8 text-blue-400 hover:text-blue-300">&larr; Voltar para o início</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO TRABALHE CONOSCO (ARTISTAS) ===== -->
+        <section id="artist-page" class="hidden flex-grow page flex items-center justify-center">
+            <div class="container mx-auto px-4 py-12 text-center max-w-2xl">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                    <div id="artist-form-container">
+                        <h2 class="text-4xl font-bold mb-2">Trabalhe Conosco</h2>
+                        <p class="text-gray-400 mb-6">É artista, músico ou streamer? Faça parte do nosso show!</p>
+                        <form id="artistForm">
+                            <div class="mb-4">
+                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nome do Artista / Banda" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E-mail de Contato" required>
+                            </div>
+                             <div class="mb-4">
+                                <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Gênero / Tipo de Apresentação" required>
+                            </div>
+                            <div class="mb-6">
+                                <input type="url" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Link para Portfólio / Demo (YouTube, etc.)" required>
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-6 rounded-lg text-lg uppercase tracking-wider glow-effect transition duration-300">
+                                Enviar Inscrição
+                            </button>
+                        </form>
+                    </div>
+                    <div id="artist-success-message" class="hidden">
+                        <h3 class="text-3xl font-bold text-green-400 mb-4">Inscrição Enviada!</h3>
+                        <p class="text-gray-300">Obrigado pelo seu interesse! Nossa equipe de curadoria entrará em contato em breve via Email.</p>
+                    </div>
+
+                    <button class="back-btn mt-8 text-blue-400 hover:text-blue-300">&larr; Voltar para o início</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO ÁREA DE ALIMENTAÇÃO ===== -->
+        <section id="food-court-page" class="hidden flex-grow page flex items-center justify-center">
+            <div class="container mx-auto px-4 py-12 text-center max-w-4xl">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                    <h2 class="text-4xl font-bold mb-6">Mapa da Área de Alimentação</h2>
+                    <p class="text-gray-400 mb-8">Recarregue suas energias com nossas deliciosas opções!</p>
+                    <div class="w-full max-w-3xl p-4 rounded-lg bg-gray-900/50 border-2 border-dashed border-gray-600 mx-auto mb-8 grid grid-cols-2 grid-rows-2 gap-4 h-96">
+                        <!-- Stall 1: Pixel Pizza -->
+                        <div class="bg-red-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-red-500 hover:bg-red-500/50 transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 text-red-400 mb-2"><path d="M15 11h.01"/><path d="M11 15h.01"/><path d="M16 16h.01"/><path d="M2 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10S2 17.5 2 12zm5-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+                            <span class="font-bold text-xl">Pixel Pizza</span>
+                        </div>
+                        <!-- Stall 2: Power-Up Burger -->
+                        <div class="bg-orange-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-orange-500 hover:bg-orange-500/50 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 text-orange-400 mb-2"><path d="M4 11a8 8 0 0 1 16 0H4z"/><path d="M4 11v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                            <span class="font-bold text-xl">Power-Up Burger</span>
+                        </div>
+                        <!-- Stall 3: Potion Drinks -->
+                        <div class="bg-cyan-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-cyan-500 hover:bg-cyan-500/50 transition-colors">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 text-cyan-400 mb-2"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3-3-4"/><path d="M8 2h8"/><path d="M5 6h14"/><path d="M7 11.5S7.5 18 12 18s5-6.5 5-6.5H7z"/></svg>
+                            <span class="font-bold text-xl">Potion Drinks</span>
+                        </div>
+                        <!-- Stall 4: Level Up Sweets -->
+                        <div class="bg-pink-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-pink-500 hover:bg-pink-500/50 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 text-pink-400 mb-2"><path d="M20 12c0-2-3-5-8-5s-8 3-8 5 3 5 8 5 8-3 8-5z"/><path d="M13.2 11.2a2.5 2.5 0 0 0-3.4 0"/><path d="m12 14 1-1"/><path d="m12 14-1-1"/></svg>
+                            <span class="font-bold text-xl">Level Up Sweets</span>
+                        </div>
+                    </div>
+                    <button class="back-btn mt-8 text-blue-400 hover:text-blue-300">&larr; Voltar para o mapa principal</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO OUTRO EVENTO ===== -->
+        <section id="other-event-page" class="hidden flex-grow page flex items-center justify-center">
+            <div class="container mx-auto px-4 py-12 text-center max-w-4xl">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                    <h2 class="text-4xl font-bold mb-6">Mapa da CCXP</h2>
+                    <p class="text-gray-400 mb-8">Um palco alternativo com talks e workshops.</p>
+                    <div class="w-full max-w-3xl p-4 rounded-lg bg-gray-900/50 border-2 border-dashed border-gray-600 mx-auto mb-8 flex flex-col h-[28rem]">
+                        <!-- Palco -->
+                         <div class="bg-purple-500/50 rounded-lg flex items-center justify-center p-4 border-2 border-purple-400 mb-4">
+                            <span class="font-bold text-xl text-white tracking-widest uppercase">Palco CCXP</span>
+                        </div>
+                        <!-- Conteúdo do mapa -->
+                        <div class="flex-grow grid grid-cols-3 gap-4">
+                             <div class="col-span-1 flex flex-col gap-4">
+                                <!-- Banheiros -->
+                                <div class="bg-yellow-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-yellow-500 h-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-yellow-400 mb-2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    <span class="font-semibold text-sm">Banheiros</span>
+                                </div>
+                                 <!-- Área de Alimentação -->
+                                <div class="bg-orange-500/30 rounded-lg flex flex-col items-center justify-center p-2 border border-orange-500 h-full">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-orange-400 mb-2"><path d="M12 2v2"/><path d="M12 20v2"/><path d="M5 12H3m18 0h-2"/><path d="M19.07 4.93l-1.42 1.42M6.34 17.66l-1.42 1.42"/><path d="m19.07 19.07-1.42-1.42M6.34 6.34 4.93 4.93"/><path d="M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4Z"/><path d="M12 12v8a4 4 0 0 0 4-4h-4Z"/></svg>
+                                    <span class="font-semibold text-sm">Alimentação</span>
+                                </div>
+                            </div>
+                            <!-- Assentos -->
+                            <div class="col-span-2 bg-gray-900/70 rounded-lg p-4">
+                                <div class="grid grid-cols-8 grid-rows-5 gap-2 h-full">
+                                     <script>
+                                        const otherChairContainer = document.currentScript.parentElement;
+                                        for (let i = 0; i < 40; i++) {
+                                            const chair = document.createElement('div');
+                                            if (i % 8 === 3 || i % 8 === 4) {
+                                                 chair.className = '';
+                                            } else {
+                                                chair.className = 'bg-gray-600 rounded-sm';
+                                            }
+                                            otherChairContainer.appendChild(chair);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="back-btn mt-8 text-blue-400 hover:text-blue-300">&larr; Voltar para o mapa principal</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== RODAPÉ ===== -->
+        <footer class="bg-gray-900/50 border-t border-gray-800 py-6">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="font-bold text-lg">Contatos de Emergência</h3>
+                    <p class="text-sm text-gray-400">Polícia: 190 | Ambulância: 192 | Bombeiros: 193</p>
+                </div>
+                <div>
+                    <button id="workWithUsBtn" class="bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        Trabalhe Conosco
+                    </button>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== MODAL DE SELEÇÃO DE ASSENTOS ===== -->
+    <div id="seat-selection-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl w-full max-w-4xl page">
+             <h2 class="text-3xl font-bold mb-6 text-center">Selecione seu Assento</h2>
+             <div class="w-full max-w-3xl aspect-video p-4 rounded-lg bg-gray-900/50 border-2 border-dashed border-gray-600 mx-auto mb-8 flex flex-col">
+                 <!-- Palco -->
+                 <div class="bg-blue-500/50 rounded-lg flex items-center justify-center p-2 mb-4">
+                     <span class="font-bold text-lg text-white tracking-widest uppercase">Palco</span>
+                 </div>
+                 <!-- Plateia / Cadeiras -->
+                 <div id="modal-chair-container" class="flex-grow grid grid-cols-12 gap-2 p-2">
+                    <!-- Cadeiras serão geradas aqui pelo JS -->
+                 </div>
+             </div>
+             <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4 text-xs">
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-sm bg-gray-600"></div><span>Disponível</span></div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-sm bg-blue-500 border-2 border-blue-300"></div><span>Selecionado</span></div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-sm bg-red-800/70"></div><span>Ocupado</span></div>
+                </div>
+                <div class="flex justify-end gap-4">
+                    <button type="button" id="cancelSeatSelectionBtn" class="text-gray-400 hover:text-white">Cancelar</button>
+                    <button type="button" id="confirmSeatSelectionBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-lg disabled:bg-gray-600 disabled:cursor-not-allowed" disabled>Confirmar Assento</button>
+                </div>
+             </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- ELEMENTOS DO DOM ---
+        const homePage = document.getElementById('home-page');
+        const registrationPage = document.getElementById('registration-page');
+        const artistPage = document.getElementById('artist-page');
+        const eventDetailsPage = document.getElementById('event-details-page');
+        const foodCourtPage = document.getElementById('food-court-page');
+        const otherEventPage = document.getElementById('other-event-page');
+        const pages = [homePage, registrationPage, artistPage, eventDetailsPage, foodCourtPage, otherEventPage];
+
+        const goToRegisterBtn = document.getElementById('goToRegisterBtn');
+        const workWithUsBtn = document.getElementById('workWithUsBtn');
+        const backBtns = document.querySelectorAll('.back-btn');
+        const ourEventBtn = document.getElementById('ourEventBtn');
+        const goToFoodCourtBtn = document.getElementById('goToFoodCourtBtn');
+        const goToOtherEventBtn = document.getElementById('goToOtherEventBtn');
+
+        const registrationForm = document.getElementById('registrationForm');
+        const formContainer = document.getElementById('form-container');
+        const qrcodeContainer = document.getElementById('qrcode-container');
+        const qrcodeDiv = document.getElementById('qrcode');
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const userSeatDisplay = document.getElementById('userSeatDisplay');
+        
+        const artistForm = document.getElementById('artistForm');
+        const artistFormContainer = document.getElementById('artist-form-container');
+        const artistSuccessMessage = document.getElementById('artist-success-message');
+
+        // --- ELEMENTOS DA SELEÇÃO DE ASSENTOS ---
+        const seatSelectionModal = document.getElementById('seat-selection-modal');
+        const openSeatModalBtn = document.getElementById('openSeatModalBtn');
+        const cancelSeatSelectionBtn = document.getElementById('cancelSeatSelectionBtn');
+        const confirmSeatSelectionBtn = document.getElementById('confirmSeatSelectionBtn');
+        const modalChairContainer = document.getElementById('modal-chair-container');
+        const staticChairContainer = document.getElementById('static-chair-container');
+        const selectedSeatDisplay = document.getElementById('selected-seat-display');
+        const selectedSeatInput = document.getElementById('selected-seat-input');
+        
+        // --- ESTADO DA APLICAÇÃO ---
+        let tempSelectedSeat = null;
+        // Simulação de assentos já ocupados
+        const occupiedSeats = ['F1C4', 'F2C8', 'F5C5', 'F6C1', 'F3C10'];
+
+        // --- FUNÇÕES DE GERAÇÃO E RENDERIZAÇÃO ---
+
+        // Gera a visualização das cadeiras em um container
+        function renderChairs(container, isInteractive) {
+            container.innerHTML = ''; // Limpa o container
+            for (let row = 1; row <= 7; row++) {
+                for (let col = 1; col <= 12; col++) {
+                    const chair = document.createElement('div');
+                    const seatId = `F${row}C${col}`;
+                    
+                    if (col === 6 || col === 7) {
+                        chair.className = ''; // Corredor
+                    } else {
+                        const isOccupied = occupiedSeats.includes(seatId);
+                        chair.id = seatId;
+                        
+                        if (isOccupied) {
+                            chair.className = 'bg-red-800/70 rounded-sm';
+                        } else {
+                            chair.className = 'bg-gray-600 rounded-sm transition-colors';
+                            if (isInteractive) {
+                                chair.classList.add('cursor-pointer', 'hover:bg-blue-400');
+                                chair.addEventListener('click', () => handleSeatClick(chair));
+                            }
+                        }
+                    }
+                    container.appendChild(chair);
+                }
+            }
+        }
+
+        // --- FUNÇÕES DE NAVEGAÇÃO ---
+        const showPage = (pageToShow) => {
+            pages.forEach(page => {
+                const isFlexPage = page !== homePage;
+                page.classList.toggle('hidden', page !== pageToShow);
+                page.classList.toggle('flex', page === pageToShow && isFlexPage);
+            });
+            window.scrollTo(0, 0);
+        };
+
+        // --- LÓGICA DE SELEÇÃO DE ASSENTOS ---
+        
+        function handleSeatClick(chairElement) {
+            // Remove a seleção anterior
+            const previouslySelected = modalChairContainer.querySelector('.border-blue-300');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('bg-blue-500', 'border-2', 'border-blue-300');
+                previouslySelected.classList.add('bg-gray-600');
+            }
+            
+            // Adiciona a nova seleção
+            chairElement.classList.add('bg-blue-500', 'border-2', 'border-blue-300');
+            chairElement.classList.remove('bg-gray-600');
+            
+            tempSelectedSeat = chairElement.id;
+            confirmSeatSelectionBtn.disabled = false;
+        }
+
+        function openSeatModal() {
+            tempSelectedSeat = selectedSeatInput.value; // Carrega seleção atual
+            renderChairs(modalChairContainer, true);
+            if(tempSelectedSeat) {
+                 const currentSeatEl = modalChairContainer.querySelector(`#${tempSelectedSeat}`);
+                 if(currentSeatEl) handleSeatClick(currentSeatEl);
+            }
+            seatSelectionModal.classList.remove('hidden');
+        }
+
+        function closeSeatModal() {
+            seatSelectionModal.classList.add('hidden');
+            tempSelectedSeat = null;
+            confirmSeatSelectionBtn.disabled = true;
+        }
+
+        function confirmSeatSelection() {
+            if (tempSelectedSeat) {
+                selectedSeatInput.value = tempSelectedSeat;
+                selectedSeatDisplay.textContent = `Assento ${tempSelectedSeat}`;
+                selectedSeatDisplay.classList.remove('text-gray-400');
+            }
+            closeSeatModal();
+        }
+
+        // --- LÓGICA DOS FORMULÁRIOS ---
+
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const seat = selectedSeatInput.value;
+
+            if (!name || !email) {
+                console.error('Por favor, preencha nome e email.');
+                return;
+            }
+            if (!seat) {
+                console.error('Por favor, selecione um assento.');
+                // Futuramente, mostrar um erro na UI
+                alert('Por favor, selecione um assento para continuar.');
+                return;
+            }
+
+            qrcodeDiv.innerHTML = '';
+            const qrData = JSON.stringify({
+                evento: "Warehouse Game Fest",
+                nome: name,
+                email: email,
+                assento: seat,
+                timestamp: new Date().toISOString()
+            });
+
+            new QRCode(qrcodeDiv, {
+                text: qrData,
+                width: 256, height: 256,
+                colorDark : "#000000", colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            userNameDisplay.textContent = name;
+            userSeatDisplay.textContent = `Assento Reservado: ${seat}`;
+            formContainer.classList.add('hidden');
+            qrcodeContainer.classList.remove('hidden');
+        });
+
+        artistForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            artistFormContainer.classList.add('hidden');
+            artistSuccessMessage.classList.remove('hidden');
+        });
+        
+        // --- FUNÇÕES DE RESET ---
+
+        function resetRegistrationForm() {
+            registrationForm.reset();
+            formContainer.classList.remove('hidden');
+            qrcodeContainer.classList.add('hidden');
+            qrcodeDiv.innerHTML = '';
+            selectedSeatInput.value = '';
+            selectedSeatDisplay.textContent = 'Nenhum assento selecionado';
+            selectedSeatDisplay.classList.add('text-gray-400');
+        }
+
+        function resetArtistForm() {
+            artistForm.reset();
+            artistFormContainer.classList.remove('hidden');
+            artistSuccessMessage.classList.add('hidden');
+        }
+        
+        // --- EVENT LISTENERS DE INICIALIZAÇÃO ---
+
+        goToRegisterBtn.addEventListener('click', () => showPage(registrationPage));
+        workWithUsBtn.addEventListener('click', () => showPage(artistPage));
+        ourEventBtn.addEventListener('click', () => showPage(eventDetailsPage));
+        goToFoodCourtBtn.addEventListener('click', () => showPage(foodCourtPage));
+        goToOtherEventBtn.addEventListener('click', () => showPage(otherEventPage));
+        
+        backBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                resetRegistrationForm();
+                resetArtistForm();
+                showPage(homePage);
+            });
+        });
+
+        openSeatModalBtn.addEventListener('click', openSeatModal);
+        cancelSeatSelectionBtn.addEventListener('click', closeSeatModal);
+        confirmSeatSelectionBtn.addEventListener('click', confirmSeatSelection);
+
+        // --- INICIALIZAÇÃO DA PÁGINA ---
+        showPage(homePage);
+        renderChairs(staticChairContainer, false); // Renderiza o mapa estático na página de detalhes
+
+    </script>
+</body>
+</html>
